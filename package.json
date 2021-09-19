@@ -1,0 +1,22 @@
+{
+  "name": "wish-list",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/giovannabadaro/wish-list.git"
+  },
+  "author": "Giovanna Badaro",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/giovannabadaro/wish-list/issues"
+  },
+  "homepage": "https://github.com/giovannabadaro/wish-list#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
