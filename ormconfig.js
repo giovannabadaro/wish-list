@@ -9,4 +9,5 @@ module.exports = {
   cli: {
     migrationsDir: './src/database/migrations',
   },
+  entities: ['./src/modules/**/entities/*.ts'],
 };
