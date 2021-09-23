@@ -1,4 +1,4 @@
-import { Request, Router, Response, NextFunction } from 'express';
+import { Router } from 'express';
 
 import { CreateCustomerController } from '../modules/customer/useCases/createCustomer/CreateCustomerController';
 import { ListCustomersController } from '../modules/customer/useCases/listCustomers/ListCustomersController';
