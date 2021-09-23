@@ -22,8 +22,12 @@
   },
   "homepage": "https://github.com/giovannabadaro/wish-list#readme",
   "dependencies": {
+    "@types/jsonwebtoken": "^8.5.5",
     "@types/uuid": "^8.3.1",
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^10.0.0",
     "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
     "multer": "^1.4.3",
     "pg": "^8.7.1",
     "pg-hstore": "^2.3.4",
@@ -33,6 +37,7 @@
     "uuid": "^8.3.2"
   },
   "devDependencies": {
+    "@types/bcryptjs": "^2.4.2",
     "@types/express": "^4.17.13",
     "@types/multer": "^1.4.7",
     "@types/node": "^16.9.4",
