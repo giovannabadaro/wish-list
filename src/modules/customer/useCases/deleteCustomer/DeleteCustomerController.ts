@@ -9,9 +9,15 @@ class DeleteCustomerController {
       const { id } = request.params;
       const deleteCustomer = container.resolve(DeleteCustomerUseCase);
 
-      await deleteCustomer.execute(id);
+      const deletedCustomer = await deleteCustomer.execute(id);
 
-      return response.status(201).json({ answer: 'successfully deleted', id });
+      if (deletedCustomer.error) {
+        return response
+          .status(deletedCustomer?.status)
+          .json({ message: deletedCustomer?.error });
+      }
+      console.log(deletedCustomer);
+      return response.status(201).json({ answer: 'successfully deleted' });
     } catch (error) {
       return response
         .status(400)

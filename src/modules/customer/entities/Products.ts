@@ -25,15 +25,6 @@ class Products {
   title: string;
 
   @Column()
-  brand: string;
-
-  @Column()
-  price: string;
-
-  @Column()
-  image: string;
-
-  @Column()
   review: string;
 
   @ManyToOne(() => Customer, (custumer) => custumer.products)

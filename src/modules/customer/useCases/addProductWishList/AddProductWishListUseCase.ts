@@ -19,22 +19,47 @@ class AddProductWishListUseCase {
   ) {}
 
   async execute({ customerId, productId }: IRequest): Promise<any> {
-    const customerExists = await this.customerRepository.findById(customerId);
-    if (!customerExists) {
-      return;
+    const customerIdNull = !!customerId === false;
+    const productIdNull = !!productId === false;
+
+    if (customerIdNull) {
+      return { error: 'Customer Id is Required!', status: 400 };
     }
-    const { data } = await axios.get(
-      `https://challenge-api.luizalabs.com/api/product/${productId}/`
-    );
-    return await this.productsRepository.create({
-      brand: data.brand,
-      external_id: data.id,
-      image: data.image,
-      price: data.price,
-      review: data.review,
-      title: data.title,
-      customer_id: customerId,
-    });
+    if (productIdNull) {
+      return { error: 'Product Id is Required!', status: 400 };
+    }
+    try {
+      const foundCustomer = await this.customerRepository.findById(customerId);
+
+      if (foundCustomer) {
+        return { error: 'Not Found Customer!', status: 400 };
+      }
+
+      const { data } = await axios.get(
+        `https://challenge-api.luizalabs.com/api/product/${productId}/`
+      );
+
+      const foundProduct =
+        await this.productsRepository.findIfProductsExistsCustomerWishList(
+          productId,
+          customerId
+        );
+
+      if (foundProduct) {
+        return {
+          error: 'This products is alredy in your wish list!',
+          status: 400,
+        };
+      }
+      return await this.productsRepository.create({
+        external_id: data.id,
+        review: data.reviewScore,
+        title: data.title,
+        customer_id: customerId,
+      });
+    } catch (error) {
+      return { error: 'Not found Product', status: 404 };
+    }
   }
 }
 

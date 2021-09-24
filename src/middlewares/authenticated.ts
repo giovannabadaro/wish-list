@@ -18,7 +18,6 @@ export async function authenticated(
     const { sub } = verify(token, secret);
     if (usernameAdm === sub) {
       next();
-      console.log('Now, you are authenticated 👻');
     } else {
       return response.status(401).send({ error: 'Ops! You are not allowed' });
     }

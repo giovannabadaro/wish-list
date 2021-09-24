@@ -16,6 +16,7 @@ class ListCustomerByIdUseCase {
   async execute(id: string): Promise<any> {
     const customer = await this.customerRepository.findById(id);
     const products = await this.productsRepository.findProductsByCustomerId(id);
+    console.log(products);
     return Object.assign(customer, { wishlist: products });
   }
 }
