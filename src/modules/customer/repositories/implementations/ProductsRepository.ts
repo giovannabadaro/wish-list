@@ -2,6 +2,7 @@ import { ICreateProductsDTO } from '../../../customer/dtos/ICreateProductsDTO';
 import { getRepository, Repository } from 'typeorm';
 import { IProductsRepository } from '../IProductsRepository';
 import { Products } from '../../entities/Products';
+import { IProductsViewDTO } from '@modules/customer/dtos/IProductView';
 
 class ProductsRepository implements IProductsRepository {
   private repository: Repository<Products>;
@@ -11,19 +12,13 @@ class ProductsRepository implements IProductsRepository {
   }
 
   async create({
-    brand,
     external_id,
-    image,
-    price,
     review,
     title,
     customer_id,
   }: ICreateProductsDTO): Promise<Products> {
     const product = this.repository.create({
-      brand,
       external_id,
-      image,
-      price,
       review,
       title,
       customer_id,
@@ -34,13 +29,14 @@ class ProductsRepository implements IProductsRepository {
     return product;
   }
 
-  async findProductsByCustomerId(id: string): Promise<any> {
-    return await this.repository.find({ customer_id: id });
-  }
+  async findProductsByCustomerId(id: string): Promise<IProductsViewDTO[]> {
+    const products = await this.repository
+      .createQueryBuilder('products')
+      .where({ customer_id: id })
+      .select(['products.external_id', 'products.title', 'products.review'])
+      .getMany();
 
-  async list(): Promise<Products[]> {
-    const customers = await this.repository.find();
-    return customers;
+    return products;
   }
 
   async delete(id: string): Promise<any> {
