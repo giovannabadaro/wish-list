@@ -33,7 +33,13 @@ class ProductsRepository implements IProductsRepository {
     const products = await this.repository
       .createQueryBuilder('products')
       .where({ customer_id: id })
-      .select(['products.external_id', 'products.title', 'products.review'])
+      .select([
+        'products.external_id',
+        'products.title',
+        'products.review',
+        'products.created_at',
+        'products.updated_at',
+      ])
       .getMany();
 
     return products;
@@ -53,8 +59,6 @@ class ProductsRepository implements IProductsRepository {
       .where({ customer_id: customer_id })
       .andWhere({ external_id: external_id })
       .getOne();
-
-    console.log(product);
     return product;
   }
 }

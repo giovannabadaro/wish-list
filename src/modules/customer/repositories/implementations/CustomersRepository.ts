@@ -35,15 +35,14 @@ class CustomersRepository implements IUCustomersRepository {
   }
 
   async updateName(id: string, name: string): Promise<any> {
-    await this.repository
+    return await this.repository
       .createQueryBuilder()
       .update()
       .set({ name })
       .where('id = :id')
       .setParameters({ id })
-      .execute();
-
-    return await this.repository.findOne(id);
+      .execute()
+      .then();
   }
 
   async findByEmail(email: string): Promise<any> {

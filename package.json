@@ -6,7 +6,6 @@
   "scripts": {
     "start": "node src/server.js",
     "dev:server": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules src/server.ts",
-    "test": "echo \"Error: no test specified\" && exit 1",
     "typeorm:cli": "ts-node ./node_modules/typeorm/cli",
     "migration:run": "npm run typeorm:cli -- migration:run",
     "migration:create": "npm run typeorm:cli -- migration:create -n"

@@ -10,13 +10,15 @@ class DeleteCustomerUseCase {
   ) {}
 
   async execute(id: string): Promise<any> {
-    const idNull = !!id === false;
-    console.log('idnull', idNull);
-    if (idNull) {
+    if (!id) {
       return { error: 'Id is required!', status: 400 };
     }
-    console.log(id);
+
     try {
+      const foundCustomer = await this.customerRepository.findById(id);
+      if (!foundCustomer) {
+        return { error: 'Not Found!', status: 404 };
+      }
       return await this.customerRepository.delete(id);
     } catch (error) {
       return { error: 'Not found', status: 404 };

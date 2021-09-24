@@ -4,21 +4,20 @@ import { container } from 'tsyringe';
 import { UpdateCustomerUseCase } from './UpdateCustomerUseCase';
 
 class UpdateCustomerController {
-  async handle(request: Request, response: Response): Promise<Response> {
+  async handle(request: Request, response: Response): Promise<any> {
     try {
       const { id } = request.params;
-      const { name, email } = request.body;
-      if (email) {
-        response.status(400).json({ error: 'Email cant be changed' });
-      }
+      const { name } = request.body;
+
       if (!name) {
-        response.status(400).json({ error: 'Name is required' });
+        return response.status(400).json({ message: 'name is required' });
       }
+
       const updateCustomer = container.resolve(UpdateCustomerUseCase);
 
-      const updatedCustomer = await updateCustomer.execute(id, name);
+      await updateCustomer.execute(id, name);
 
-      return response.status(201).json(updatedCustomer);
+      return response.status(204).json();
     } catch (error) {
       return response
         .status(400)

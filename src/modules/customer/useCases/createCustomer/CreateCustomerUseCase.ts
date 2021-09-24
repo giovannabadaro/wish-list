@@ -12,8 +12,7 @@ class CreateCustomerUseCase {
   async execute({ name, email }: ICreateCustomerDTO): Promise<any> {
     const nameNull = !!name === false;
     const emailNull = !!email === false;
-    console.log(name, 'usecase');
-    console.log(email, 'usecase');
+
     if (nameNull) {
       return { error: 'Name is required!', status: 400 };
     }

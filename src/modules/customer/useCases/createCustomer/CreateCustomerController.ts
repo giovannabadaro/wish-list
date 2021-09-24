@@ -5,7 +5,6 @@ import { CreateCustomerUseCase } from './CreateCustomerUseCase';
 class CreateCustomerController {
   async handle(request: Request, response: Response): Promise<Response> {
     const { name, email } = request.body;
-    console.log(name, email);
 
     try {
       const createCustomerUseCase = container.resolve(CreateCustomerUseCase);

@@ -21,7 +21,7 @@ class AuthUseCase {
       });
       return token;
     } else {
-      return { error: 'Incorrect Data' };
+      return { error: 'Not Authorized', status: 401 };
     }
   }
 }
