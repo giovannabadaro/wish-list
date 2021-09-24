@@ -26,6 +26,9 @@ O banco utilizado nesse projeto foi o postgresSQL
 ```bash
 docker pull postgres
 ```
+```bash
+docker pull dpage/pgadmin4
+```
 
 #### Rode o docker-compose
 
@@ -37,6 +40,11 @@ docker pull postgres
 
 ```bash
   docker-compose start
+```
+
+Rode:
+```bash
+  npm install
 ```
 
 Esse projeto esta trabalhando com versionamento de alterações no banco de dados, então você precisa rodar as migrations:
