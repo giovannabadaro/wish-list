@@ -5,6 +5,7 @@ import { ListCustomersController } from '../modules/customer/useCases/listCustom
 import { ListCustomerByIdController } from '../modules/customer/useCases/listCostumerById/ListCustomerByIdController';
 import { DeleteCustomerController } from '../modules/customer/useCases/deleteCustomer/DeleteCustomerController';
 import { UpdateCustomerController } from '../modules/customer/useCases/updateCustomer/UpdateCustomerController';
+import { authenticated } from '../middlewares/authenticated';
 
 const customersRouter = Router();
 
@@ -13,6 +14,8 @@ const listCustomerController = new ListCustomersController();
 const listCostumerById = new ListCustomerByIdController();
 const deleteCustomerController = new DeleteCustomerController();
 const updateCustomerController = new UpdateCustomerController();
+
+customersRouter.use(authenticated);
 
 customersRouter.post('/', createCustomerController.handle);
 

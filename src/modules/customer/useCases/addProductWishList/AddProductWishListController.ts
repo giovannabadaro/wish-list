@@ -1,16 +1,19 @@
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
-import { CreateCustomerUseCase } from './CreateCustomerUseCase';
+import { AddProductWishListUseCase } from './AddProductWishListUseCase';
 
-class CreateCustomerController {
+class AddWishListController {
   async handle(request: Request, response: Response): Promise<Response> {
-    const { name, email } = request.body;
-
+    const { customerId } = request.params;
+    const { productId } = request.body;
     try {
-      const createCustomerUseCase = container.resolve(CreateCustomerUseCase);
-
-      const customer = await createCustomerUseCase.execute({ name, email });
-
+      const addProductWishListUseCase = container.resolve(
+        AddProductWishListUseCase
+      );
+      const customer = await addProductWishListUseCase.execute({
+        customerId,
+        productId,
+      });
       if (customer?.error) {
         return response
           .status(customer?.status)
@@ -24,4 +27,4 @@ class CreateCustomerController {
   }
 }
 
-export { CreateCustomerController };
+export { AddWishListController };

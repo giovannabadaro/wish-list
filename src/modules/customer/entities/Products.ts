@@ -6,26 +6,33 @@ import {
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
-  OneToMany,
   PrimaryColumn,
   UpdateDateColumn,
+  ManyToOne,
+  JoinColumn,
 } from 'typeorm';
+import { Customer } from './Customer';
 
-import { Products } from './Products';
-
-@Entity('customer')
-class Customer {
+@Entity('products')
+class Products {
   @PrimaryColumn()
   id?: string;
 
   @Column()
-  name: string;
+  external_id: string;
 
   @Column()
-  email: string;
+  title: string;
 
-  @OneToMany(() => Products, (product) => product.customer)
-  products: Products[];
+  @Column()
+  review: string;
+
+  @ManyToOne(() => Customer, (custumer) => custumer.products)
+  @JoinColumn({ name: 'customer_id' })
+  customer: Customer;
+
+  @Column()
+  customer_id: string;
 
   @CreateDateColumn({ type: 'timestamp' })
   created_at: Date;
@@ -46,4 +53,4 @@ class Customer {
   }
 }
 
-export { Customer };
+export { Products };
