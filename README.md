@@ -26,9 +26,6 @@ O banco utilizado nesse projeto foi o postgresSQL
 ```bash
 docker pull postgres
 ```
-```bash
-docker pull dpage/pgadmin4
-```
 
 #### Rode o docker-compose
 
