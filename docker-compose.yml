@@ -6,7 +6,7 @@ services:
     container_name: wish-list-database
     restart: always
     ports:
-      - '5432:5432'
+      - '5431:5432'
     env_file:
       - .env
     volumes:
