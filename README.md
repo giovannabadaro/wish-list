@@ -21,6 +21,12 @@ Para instalar o projeto em sua máquina, primeiramente certifique-se de ter inst
 
 O banco utilizado nesse projeto foi o postgresSQL
 
+#### Baixe a imagem necessária, com o comando: 
+
+```bash
+docker pull postgres
+```
+
 #### Rode o docker-compose
 
 ```bash
