@@ -11,11 +11,9 @@ class DeleteCustomerUseCase {
 
   async execute(id: string): Promise<any> {
     const idNull = !!id === false;
-    console.log('idnull', idNull);
     if (idNull) {
       return { error: 'Id is required!', status: 400 };
     }
-    console.log(id);
     try {
       return await this.customerRepository.delete(id);
     } catch (error) {

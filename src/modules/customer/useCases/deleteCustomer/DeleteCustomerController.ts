@@ -16,7 +16,6 @@ class DeleteCustomerController {
           .status(deletedCustomer?.status)
           .json({ message: deletedCustomer?.error });
       }
-      console.log(deletedCustomer);
       return response.status(201).json({ answer: 'successfully deleted' });
     } catch (error) {
       return response

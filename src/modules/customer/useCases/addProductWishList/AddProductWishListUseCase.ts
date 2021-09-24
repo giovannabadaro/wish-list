@@ -31,7 +31,8 @@ class AddProductWishListUseCase {
     try {
       const foundCustomer = await this.customerRepository.findById(customerId);
 
-      if (foundCustomer) {
+      console.log('customerfounf', foundCustomer);
+      if (!foundCustomer) {
         return { error: 'Not Found Customer!', status: 400 };
       }
 
