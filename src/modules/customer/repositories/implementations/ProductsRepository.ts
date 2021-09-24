@@ -42,6 +42,21 @@ class ProductsRepository implements IProductsRepository {
   async delete(id: string): Promise<any> {
     return await this.repository.delete(id);
   }
+
+  async findIfProductsExistsCustomerWishList(
+    external_id: string,
+    customer_id: string
+  ): Promise<any> {
+    const product = await this.repository
+      .createQueryBuilder('products')
+      .select(['products.external_id', 'products.customer_id'])
+      .where({ customer_id: customer_id })
+      .andWhere({ external_id: external_id })
+      .getOne();
+
+    console.log(product);
+    return product;
+  }
 }
 
 export { ProductsRepository };

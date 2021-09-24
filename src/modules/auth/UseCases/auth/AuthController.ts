@@ -8,7 +8,6 @@ class AuthController {
       const authUseCase = new AuthUseCase();
 
       const authInfo = await authUseCase.execute({ username, password });
-      console.log(authInfo);
 
       return response.status(201).json(authInfo);
     } catch (error) {

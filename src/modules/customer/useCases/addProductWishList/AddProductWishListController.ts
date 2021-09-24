@@ -9,11 +9,15 @@ class AddWishListController {
       const addProductWishListUseCase = container.resolve(
         AddProductWishListUseCase
       );
-
       const customer = await addProductWishListUseCase.execute({
         customerId,
         productId,
       });
+      if (customer?.error) {
+        return response
+          .status(customer?.status)
+          .json({ message: customer?.error });
+      }
 
       return response.status(201).json(customer);
     } catch (error) {
