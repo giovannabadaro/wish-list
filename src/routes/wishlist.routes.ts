@@ -9,6 +9,6 @@ wishListRouter.use(authenticated);
 
 const addWishListController = new AddWishListController();
 
-wishListRouter.post('/:customerId/:productId', addWishListController.handle);
+wishListRouter.post('/:customerId', addWishListController.handle);
 
 export { wishListRouter };

@@ -4,7 +4,8 @@ import { AddProductWishListUseCase } from './AddProductWishListUseCase';
 
 class AddWishListController {
   async handle(request: Request, response: Response): Promise<Response> {
-    const { customerId, productId } = request.params;
+    const { customerId } = request.params;
+    const { productId } = request.body;
     try {
       const addProductWishListUseCase = container.resolve(
         AddProductWishListUseCase

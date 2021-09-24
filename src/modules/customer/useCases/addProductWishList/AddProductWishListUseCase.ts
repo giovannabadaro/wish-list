@@ -33,7 +33,7 @@ class AddProductWishListUseCase {
 
       console.log('customerfounf', foundCustomer);
       if (!foundCustomer) {
-        return { error: 'Not Found Customer!', status: 400 };
+        return { error: 'Not Found Customer!', status: 404 };
       }
 
       const { data } = await axios.get(

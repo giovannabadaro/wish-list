@@ -8,8 +8,13 @@ class AuthController {
       const authUseCase = new AuthUseCase();
 
       const authInfo = await authUseCase.execute({ username, password });
+      if (authInfo.error) {
+        return response
+          .status(authInfo.status)
+          .json({ message: authInfo.error });
+      }
 
-      return response.status(201).json(authInfo);
+      return response.status(200).json({ token: authInfo });
     } catch (error) {
       return response.status(500).json({ error: 'Internal Server Error' });
     }
